@@ -1,5 +1,6 @@
-# Ignored root directories and files
+# Ignored directories and files
 /app/
+/build/
 /core/
 /new/
 /public/
