@@ -1,0 +1,7 @@
+# Ignored root directories and files
+/app/
+/core/
+/new/
+/public/
+/server/
+/*.toml
