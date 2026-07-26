@@ -1,0 +1,103 @@
+<script>
+    import Header from "../components/Header.erm";
+    import Footer from "../components/Footer.erm";
+</script>
+
+<style>
+    .guides-container {
+        padding: 40px 0 80px;
+    }
+
+    .guide-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 32px;
+        transition: all 0.25s ease;
+    }
+    .guide-card:hover {
+        border-color: rgba(0, 242, 254, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .guide-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .guide-desc {
+        color: #94a3b8;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+</style>
+
+<Header />
+
+<main class="content-area guides-container">
+    <div class="container" style="max-width: 900px;">
+        <div style="text-align: center; margin-bottom: 48px;">
+            <span class="badge badge-purple" style="margin-bottom: 12px;">Step-by-Step Tutorials</span>
+            <h1 style="font-size: 2.8rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">Eronom Guides</h1>
+            <p style="color: #94a3b8; font-size: 1rem;">
+                Learn how to build, optimize, and deploy high-performance applications with Eronom.
+            </p>
+        </div>
+
+        <!-- GUIDE 1 -->
+        <div class="guide-card">
+            <h2 class="guide-title">
+                <span>💻</span>
+                <span>VS Code Extension Setup & Syntax Highlighting</span>
+            </h2>
+            <p class="guide-desc">
+                Get full syntax highlighting, tag auto-closing, and signal completion inside <code>.erm</code> files in Visual Studio Code.
+            </p>
+            <div style="background: #0d1117; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: #cbd5e1;">
+                1. Open VS Code Extensions (Ctrl+Shift+X)<br/>
+                2. Search for <strong style="color: #00f2fe;">"Eronom Language Tools"</strong><br/>
+                3. Click Install to enable automatic bracket matching & template highlighting.
+            </div>
+        </div>
+
+        <!-- GUIDE 2 -->
+        <div class="guide-card">
+            <h2 class="guide-title">
+                <span>🌐</span>
+                <span>Building Full-Stack API Routes</span>
+            </h2>
+            <p class="guide-desc">
+                Learn how to handle HTTP requests, return JSON responses, and integrate backend databases in <code>server/api/routes.er</code>.
+            </p>
+            <div style="background: #0d1117; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: #cbd5e1;">
+                import { router } from "std/http";<br/><br/>
+                let app = router();<br/>
+                app.get('/api/users', (c) => c.json([{ id: 1, name: "Alice" }]));
+            </div>
+        </div>
+
+        <!-- GUIDE 3 -->
+        <div class="guide-card">
+            <h2 class="guide-title">
+                <span>🚀</span>
+                <span>Production Build & Rust Deployment</span>
+            </h2>
+            <p class="guide-desc">
+                Compile your Eronom app into a single self-contained binary with sub-millisecond cold start times.
+            </p>
+            <div style="background: #0d1117; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: #cbd5e1;">
+                $ eronom build<br/>
+                Installed production bundle under ./dist/server
+            </div>
+        </div>
+    </div>
+</main>
+
+<Footer />

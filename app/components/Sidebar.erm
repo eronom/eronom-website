@@ -1,0 +1,122 @@
+<script>
+    export let activeSection = 'introduction';
+</script>
+
+<style>
+    .sidebar-nav {
+        width: 260px;
+        flex-shrink: 0;
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding-right: 16px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sidebar-group {
+        margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #64748b;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .sidebar-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .sidebar-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.88rem;
+        color: #94a3b8;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar-item:hover {
+        color: #f8fafc;
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .sidebar-item.active {
+        color: #00f2fe;
+        background: rgba(0, 242, 254, 0.1);
+        font-weight: 600;
+        border-left: 2px solid #00f2fe;
+    }
+
+    .mini-badge {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: rgba(157, 78, 221, 0.2);
+        color: #9d4edd;
+        font-weight: 700;
+    }
+</style>
+
+<aside class="sidebar-nav">
+    <div class="sidebar-group">
+        <div class="sidebar-title">🚀 Getting Started</div>
+        <ul class="sidebar-list">
+            <li><a href="#introduction" class="sidebar-item active">Introduction</a></li>
+            <li><a href="#quick-start" class="sidebar-item">Quick Start (60s)</a></li>
+            <li><a href="#installation" class="sidebar-item">Installation</a></li>
+            <li><a href="#project-structure" class="sidebar-item">Project Structure</a></li>
+        </ul>
+    </div>
+
+    <div class="sidebar-group">
+        <div class="sidebar-title">⚡ Core Concepts</div>
+        <ul class="sidebar-list">
+            <li><a href="#signals" class="sidebar-item">Reactive Signals <span class="mini-badge">useState</span></a></li>
+            <li><a href="#effects" class="sidebar-item">Effects & Lifecycle</a></li>
+            <li><a href="#control-flow" class="sidebar-item">Control Flow (if / for)</a></li>
+            <li><a href="#context-api" class="sidebar-item">Context API</a></li>
+            <li><a href="#components" class="sidebar-item">Components & Layouts</a></li>
+        </ul>
+    </div>
+
+    <div class="sidebar-group">
+        <div class="sidebar-title">🌐 Full-Stack & Server</div>
+        <ul class="sidebar-list">
+            <li><a href="#server-routes" class="sidebar-item">Server API Routes</a></li>
+            <li><a href="#hmr-engine" class="sidebar-item">Rust HMR Engine</a></li>
+            <li><a href="#scoped-css" class="sidebar-item">Scoped CSS Styling</a></li>
+        </ul>
+    </div>
+
+    <div class="sidebar-group">
+        <div class="sidebar-title">📖 API Reference</div>
+        <ul class="sidebar-list">
+            <li><Link to="/api" class="sidebar-item">Runtime API</Link></li>
+            <li><Link to="/api" class="sidebar-item">CLI Commands</Link></li>
+            <li><Link to="/api" class="sidebar-item">eronom.toml Config</Link></li>
+        </ul>
+    </div>
+
+    <div class="sidebar-group">
+        <div class="sidebar-title">⚡ Performance & Guides</div>
+        <ul class="sidebar-list">
+            <li><Link to="/benchmarks" class="sidebar-item">Speed Benchmarks</Link></li>
+            <li><Link to="/guides" class="sidebar-item">VS Code Setup Guide</Link></li>
+            <li><Link to="/guides" class="sidebar-item">Deployment Guide</Link></li>
+        </ul>
+    </div>
+</aside>

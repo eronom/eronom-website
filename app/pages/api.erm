@@ -1,0 +1,175 @@
+<script>
+    import Header from "../components/Header.erm";
+    import Footer from "../components/Footer.erm";
+
+    let apiSearch = useState('');
+</script>
+
+<style>
+    .api-container {
+        padding: 40px 0 80px;
+    }
+
+    .api-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 40px;
+    }
+
+    .api-search-box {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        position: relative;
+    }
+
+    .api-search-input {
+        width: 100%;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        padding: 16px 20px 16px 48px;
+        color: #ffffff;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.2s ease;
+    }
+    .api-search-input:focus {
+        border-color: #00f2fe;
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .search-icon-pos {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #64748b;
+        font-size: 1.1rem;
+    }
+
+    .api-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 24px;
+    }
+
+    .api-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.25s ease;
+    }
+    .api-card:hover {
+        border-color: rgba(0, 242, 254, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .api-sig {
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        font-weight: 600;
+        color: #00f2fe;
+        margin-bottom: 8px;
+    }
+
+    .api-badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: rgba(157, 78, 221, 0.15);
+        color: #9d4edd;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .api-desc {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+</style>
+
+<Header />
+
+<main class="content-area api-container">
+    <div class="container">
+        <div class="api-header">
+            <span class="badge badge-green" style="margin-bottom: 12px;">Full API Surface</span>
+            <h1 style="font-size: 2.8rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">API Reference</h1>
+            <p style="color: #94a3b8; font-size: 1rem;">
+                Explore runtime hooks, signals, template syntax, CLI flags, and configuration properties.
+            </p>
+        </div>
+
+        <div class="api-search-box">
+            <span class="search-icon-pos">🔍</span>
+            <input 
+                class="api-search-input" 
+                placeholder="Filter APIs by name (e.g. useState, useEffect, eronom dev)..." 
+                value={apiSearch}
+                onInput={(e) => { apiSearch = e.target.value; }}
+            />
+        </div>
+
+        <div class="api-grid">
+            <div class="api-card">
+                <span class="api-badge">RUNTIME HOOK</span>
+                <div class="api-sig">useState(initialValue)</div>
+                <p class="api-desc">
+                    Creates a fine-grained reactive state signal. Accepts a primitive value, object, array, or dynamic accessor function.
+                </p>
+                <pre style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">let count = useState(0);<br/>let double = useState(() =&gt; count * 2);</pre>
+            </div>
+
+            <div class="api-card">
+                <span class="api-badge">RUNTIME HOOK</span>
+                <div class="api-sig">useEffect(fn, deps)</div>
+                <p class="api-desc">
+                    Executes side-effect logic whenever reactive dependencies inside the dependency array trigger mutations.
+                </p>
+                <pre style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">useEffect(() =&gt; &#123;<br/>  console.log("Count changed:", count);<br/>&#125;, [count]);</pre>
+            </div>
+
+            <div class="api-card">
+                <span class="api-badge">LIFECYCLE</span>
+                <div class="api-sig">onMount(fn)</div>
+                <p class="api-desc">
+                    Runs after component DOM mounting completes. Optionally return a cleanup function to execute on unmount.
+                </p>
+                <pre style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">onMount(() =&gt; &#123;<br/>  const timer = setInterval(...);<br/>  return () =&gt; clearInterval(timer);<br/>&#125;);</pre>
+            </div>
+
+            <div class="api-card">
+                <span class="api-badge">ROUTING</span>
+                <div class="api-sig">&lt;Link to="/path"&gt;</div>
+                <p class="api-desc">
+                    Client-side navigation component for zero-reload route switching without full browser reloads.
+                </p>
+                <pre style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">&lt;Link to="/docs" class="nav-link"&gt;<br/>  Go to Docs<br/>&lt;/Link&gt;</pre>
+            </div>
+
+            <div class="api-card">
+                <span class="api-badge">CLI COMMAND</span>
+                <div class="api-sig">eronom init [dir]</div>
+                <p class="api-desc">
+                    Initializes a fresh Eronom project with pre-configured directory layout, standard routing, and HMR server.
+                </p>
+                <pre style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">$ eronom init docs</pre>
+            </div>
+
+            <div class="api-card">
+                <span class="api-badge">CLI COMMAND</span>
+                <div class="api-sig">eronom dev [dir]</div>
+                <p class="api-desc">
+                    Launches the native Rust dev server with instant HMR compilation on http://localhost:4000.
+                </p>
+                <pre style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">$ eronom dev .</pre>
+            </div>
+        </div>
+    </div>
+</main>
+
+<Footer />

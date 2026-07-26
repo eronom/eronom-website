@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta data-e-82c5d114a3007cc6 charset="UTF-8">
+    <meta data-e-82c5d114a3007cc6 name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-e-82c5d114a3007cc6>Eronom — The Next-Gen Reactive Full-Stack Web Framework</title>
+    <meta data-e-82c5d114a3007cc6 name="description" content="Eronom is a lightning-fast, signal-based full-stack web framework powered by Rust with native HMR, zero-config API routes, and instant compilation.">
+    <link data-e-82c5d114a3007cc6 rel="preconnect" href="https://fonts.googleapis.com">
+    <link data-e-82c5d114a3007cc6 rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link data-e-82c5d114a3007cc6 href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+
+<style id="__erm_scoped_styles">
+[data-e-82c5d114a3007cc6]:root {
+            --bg-base: #090a0f;
+            --bg-surface: #11141d;
+            --bg-surface-hover: #171c28;
+            --bg-glass: rgba(17, 20, 29, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 242, 254, 0.3);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --accent-cyan: #00f2fe;
+            --accent-purple: #9d4edd;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-pink: #ec4899;
+            
+            --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #9d4edd 100%);
+            --gradient-text: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%);
+            --gradient-border: linear-gradient(90deg, rgba(0,242,254,0.5), rgba(157,78,221,0.5));
+            --glow-cyan: 0 0 35px rgba(0, 242, 254, 0.25);
+            --glow-purple: 0 0 35px rgba(157, 78, 221, 0.25);
+            
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+        }*[data-e-82c5d114a3007cc6] {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }html, body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }/* Subtle background gradient glow */
+        body[data-e-82c5d114a3007cc6]::before {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(157, 78, 221, 0.06) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }body::after {
+            content: '';
+            position: fixed;
+            bottom: -200px;
+            right: -100px;
+            width: 700px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }/* Custom Scrollbar */
+        [data-e-82c5d114a3007cc6]::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }[data-e-82c5d114a3007cc6]::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }[data-e-82c5d114a3007cc6]::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }[data-e-82c5d114a3007cc6]::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 242, 254, 0.4);
+        }a[data-e-82c5d114a3007cc6] {
+            color: inherit;
+            text-decoration: none;
+        }code[data-e-82c5d114a3007cc6], pre[data-e-82c5d114a3007cc6] {
+            font-family: var(--font-mono);
+        }.main-wrapper[data-e-82c5d114a3007cc6] {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }.content-area[data-e-82c5d114a3007cc6] {
+            flex: 1;
+        }/* Global Utility Classes */
+        .container[data-e-82c5d114a3007cc6] {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }.gradient-text[data-e-82c5d114a3007cc6] {
+            background-image: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%);
+            background: var(--gradient-text, linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%));
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #00f2fe;
+            display: inline-block;
+            filter: drop-shadow(0 0 16px rgba(0, 242, 254, 0.4));
+        }.badge[data-e-82c5d114a3007cc6] {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+        }.badge-purple[data-e-82c5d114a3007cc6] {
+            background: rgba(157, 78, 221, 0.1);
+            color: var(--accent-purple);
+            border-color: rgba(157, 78, 221, 0.25);
+        }.badge-green[data-e-82c5d114a3007cc6] {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            border-color: rgba(16, 185, 129, 0.25);
+        }.btn-primary[data-e-82c5d114a3007cc6] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--gradient-primary);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+        }.btn-primary[data-e-82c5d114a3007cc6]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5);
+            filter: brightness(1.1);
+        }.btn-secondary[data-e-82c5d114a3007cc6] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }.btn-secondary[data-e-82c5d114a3007cc6]:hover {
+            background: var(--bg-surface-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }.glass-card[data-e-82c5d114a3007cc6] {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }.glass-card[data-e-82c5d114a3007cc6]:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--glow-cyan);
+        }
+.docs-layout[data-e-5c64204ee23920e7] {
+        display: flex;
+        gap: 40px;
+        padding-top: 40px;
+        padding-bottom: 60px;
+    }.docs-main-content[data-e-5c64204ee23920e7] {
+        flex: 1;
+        min-width: 0;
+    }.docs-toc[data-e-5c64204ee23920e7] {
+        width: 220px;
+        flex-shrink: 0;
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding-left: 16px;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+    }.toc-title[data-e-5c64204ee23920e7] {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #64748b;
+        margin-bottom: 12px;
+    }.toc-list[data-e-5c64204ee23920e7] {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.85rem;
+    }.toc-item[data-e-5c64204ee23920e7] {
+        color: #94a3b8;
+        transition: color 0.2s ease;
+    }.toc-item[data-e-5c64204ee23920e7]:hover {
+        color: #00f2fe;
+    }.doc-section[data-e-5c64204ee23920e7] {
+        margin-bottom: 56px;
+        scroll-margin-top: 90px;
+    }.doc-h1[data-e-5c64204ee23920e7] {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        color: #ffffff;
+    }.doc-h2[data-e-5c64204ee23920e7] {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-top: 40px;
+        margin-bottom: 16px;
+        color: #f8fafc;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 8px;
+    }.doc-h3[data-e-5c64204ee23920e7] {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 28px;
+        margin-bottom: 12px;
+        color: #cbd5e1;
+    }.doc-p[data-e-5c64204ee23920e7] {
+        color: #94a3b8;
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }.code-block[data-e-5c64204ee23920e7] {
+        background: #0d1117;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        overflow-x: auto;
+        font-family: var(--font-mono);
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: #e2e8f0;
+    }.callout-box[data-e-5c64204ee23920e7] {
+        background: rgba(0, 242, 254, 0.05);
+        border: 1px solid rgba(0, 242, 254, 0.25);
+        border-left: 4px solid #00f2fe;
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin: 24px 0;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+    }.callout-title[data-e-5c64204ee23920e7] {
+        font-weight: 700;
+        color: #00f2fe;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }@media (max-width[data-e-5c64204ee23920e7]: 1024px) {
+        .docs-toc {
+            display: none;
+        }}
+    @media (max-width[data-e-5c64204ee23920e7]: 768px) {
+        .docs-layout {
+            flex-direction: column;
+        }
+    }
+.header-nav[data-e-42ee84ec30f250a8] {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(9, 10, 15, 0.82);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        height: 64px;
+        display: flex;
+        align-items: center;
+    }.nav-container[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }.brand-logo[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        text-decoration: none;
+    }.logo-icon[data-e-42ee84ec30f250a8] {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #00f2fe, #9d4edd);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }.brand-logo-img[data-e-42ee84ec30f250a8] {
+        height: 32px;
+        width: auto;
+        object-fit: contain;
+        border-radius: 6px;
+        filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.3));
+        transition: transform 0.2s ease;
+    }.brand-logo[data-e-42ee84ec30f250a8]:hover .brand-logo-img {
+        transform: scale(1.05);
+    }.version-pill[data-e-42ee84ec30f250a8] {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 12px;
+        background: rgba(0, 242, 254, 0.12);
+        color: #00f2fe;
+        border: 1px solid rgba(0, 242, 254, 0.3);
+    }.nav-menu[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        list-style: none;
+    }.nav-link[data-e-42ee84ec30f250a8] {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #94a3b8;
+        transition: color 0.2s ease;
+        text-decoration: none;
+    }.nav-link[data-e-42ee84ec30f250a8]:hover {
+        color: #ffffff;
+    }.search-btn[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 8px 14px;
+        color: #64748b;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }.search-btn[data-e-42ee84ec30f250a8]:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(0, 242, 254, 0.3);
+        color: #94a3b8;
+    }.shortcut-badge[data-e-42ee84ec30f250a8] {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #cbd5e1;
+    }.github-btn[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 8px 14px;
+        color: #f8fafc;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }.github-btn[data-e-42ee84ec30f250a8]:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.25);
+    }.mobile-toggle[data-e-42ee84ec30f250a8] {
+        display: none;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }@media (max-width[data-e-42ee84ec30f250a8]: 768px) {
+        .nav-menu {
+            display: none;
+        }.mobile-toggle[data-e-42ee84ec30f250a8] {
+            display: block;
+        }}
+
+    /* Search Modal Overlay */
+    .modal-overlay[data-e-42ee84ec30f250a8] {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 100px;
+    }.search-dialog[data-e-42ee84ec30f250a8] {
+        background: #11141d;
+        border: 1px solid rgba(0, 242, 254, 0.3);
+        border-radius: 16px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+    }.search-input-header[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }.search-input-field[data-e-42ee84ec30f250a8] {
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #ffffff;
+        font-size: 1.1rem;
+        padding: 0 12px;
+        font-family: var(--font-sans);
+    }.search-results-list[data-e-42ee84ec30f250a8] {
+        max-height: 350px;
+        overflow-y: auto;
+        padding: 12px;
+    }.search-item[data-e-42ee84ec30f250a8] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        border-radius: 8px;
+        color: #cbd5e1;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }.search-item[data-e-42ee84ec30f250a8]:hover {
+        background: rgba(0, 242, 254, 0.1);
+        color: #00f2fe;
+    }
+.sidebar-nav[data-e-501e0e9a14e69682] {
+        width: 260px;
+        flex-shrink: 0;
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding-right: 16px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }.sidebar-group[data-e-501e0e9a14e69682] {
+        margin-bottom: 24px;
+    }.sidebar-title[data-e-501e0e9a14e69682] {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #64748b;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }.sidebar-list[data-e-501e0e9a14e69682] {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }.sidebar-item[data-e-501e0e9a14e69682] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.88rem;
+        color: #94a3b8;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }.sidebar-item[data-e-501e0e9a14e69682]:hover {
+        color: #f8fafc;
+        background: rgba(255, 255, 255, 0.04);
+    }.sidebar-item.active[data-e-501e0e9a14e69682] {
+        color: #00f2fe;
+        background: rgba(0, 242, 254, 0.1);
+        font-weight: 600;
+        border-left: 2px solid #00f2fe;
+    }.mini-badge[data-e-501e0e9a14e69682] {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: rgba(157, 78, 221, 0.2);
+        color: #9d4edd;
+        font-weight: 700;
+    }
+.footer[data-e-d27861136846622] {
+        background: #06070a;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 64px 0 32px;
+        margin-top: 80px;
+        color: #94a3b8;
+        font-size: 0.9rem;
+    }.footer-grid[data-e-d27861136846622] {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 40px;
+        margin-bottom: 48px;
+    }.footer-brand[data-e-d27861136846622] {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }.footer-brand-title[data-e-d27861136846622] {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }.footer-desc[data-e-d27861136846622] {
+        color: #64748b;
+        max-width: 320px;
+        line-height: 1.6;
+        font-size: 0.88rem;
+    }.footer-heading[data-e-d27861136846622] {
+        color: #f8fafc;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+    }.footer-links[data-e-d27861136846622] {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }.footer-link[data-e-d27861136846622] {
+        color: #94a3b8;
+        transition: color 0.2s ease;
+        text-decoration: none;
+    }.footer-link[data-e-d27861136846622]:hover {
+        color: #00f2fe;
+    }.footer-bottom[data-e-d27861136846622] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.82rem;
+        color: #64748b;
+    }.system-status[data-e-d27861136846622] {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        font-weight: 500;
+    }.status-dot[data-e-d27861136846622] {
+        width: 8px;
+        height: 8px;
+        background: #10b981;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #10b981;
+    }@media (max-width[data-e-d27861136846622]: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }.footer-bottom[data-e-d27861136846622] {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+    }
+</style>
+<script type="module" class="__erm_script">
+import { useState, useEffect, onMount, useParams, effect } from '/core/runtime.js';
+{
+let anchorId = "";
+
+window.__erm_params = {};
+// Global helper for interactive code copying
+        window.copyToClipboard = function(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = element.innerText;
+                element.innerText = 'Copied!';
+                element.style.background = '#10b981';
+                element.style.color = '#fff';
+                setTimeout(() => {
+                    element.innerText = originalText;
+                    element.style.background = '';
+                    element.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        };
+
+        // Keyboard Shortcut for Search Modal (Ctrl + K or Cmd + K)
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                const searchInput = document.getElementById('global-search-input');
+                const searchModal = document.getElementById('search-modal');
+                if (searchModal) {
+                    searchModal.style.display = 'flex';
+                    if (searchInput) searchInput.focus();
+                }
+            }
+            if (e.key === 'Escape') {
+                const searchModal = document.getElementById('search-modal');
+                if (searchModal) searchModal.style.display = 'none';
+            }
+        });
+// Demo state for documentation preview widget inside docs!
+    let liveCounter = useState(1, "app_pages_docs_erm__liveCounter");
+    let themeValue = useState('dark', "app_pages_docs_erm__themeValue");
+window.Header = function(anchorId, props) {
+  try {
+    let el = document.getElementById(anchorId);
+    if (el && el.innerHTML.trim() === "") {
+      el.innerHTML = `
+
+
+
+<header data-e-42ee84ec30f250a8 class="header-nav">
+    <div data-e-42ee84ec30f250a8 class="nav-container">
+        <a data-e-42ee84ec30f250a8 href="/" class="brand-logo">
+            <img data-e-42ee84ec30f250a8 src="/eronom_logo.png" alt="Eronom Logo" class="brand-logo-img" />
+            <span data-e-42ee84ec30f250a8>Eronom</span>
+            <span data-e-42ee84ec30f250a8 class="version-pill">v0.9.2</span>
+        </a>
+
+        <ul data-e-42ee84ec30f250a8 class="nav-menu">
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="/docs" class="nav-link">Docs</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="/api" class="nav-link">API Reference</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="/guides" class="nav-link">Guides</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="/benchmarks" class="nav-link">Benchmarks</a></li>
+        </ul>
+
+        <div data-e-42ee84ec30f250a8 style="display: flex; align-items: center; gap: 12px;">
+            <button data-e-42ee84ec30f250a8 class="search-btn" id="${anchorId}erm-evt-736" >
+                <span data-e-42ee84ec30f250a8>🔍 Search documentation...</span>
+                <span data-e-42ee84ec30f250a8 class="shortcut-badge">⌘K</span>
+            </button>
+
+            <a data-e-42ee84ec30f250a8 href="https://github.com" target="_blank" class="github-btn">
+                <svg data-e-42ee84ec30f250a8 width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path data-e-42ee84ec30f250a8 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span data-e-42ee84ec30f250a8>1</span>
+            </a>
+
+            <button data-e-42ee84ec30f250a8 class="mobile-toggle" id="${anchorId}erm-evt-1874" >
+                ☰
+            </button>
+        </div>
+    </div>
+</header>
+
+<span data-e-42ee84ec30f250a8 id="${anchorId}erm-if-0" style="display:contents;"></span>
+`;
+    }
+  } catch(e) { console.error(e); }
+  window.__erm_register_if(anchorId + "erm-if-0", () => { let __erm_new = ""; if (isSearchOpen.value) { __erm_new = `
+    <div data-e-42ee84ec30f250a8 class="modal-overlay" id="search-modal" ${window.__erm_register_event('click', (event) => { ((e) => { if(e.target.className === 'modal-overlay') closeSearch(); })(event); })}>
+        <div data-e-42ee84ec30f250a8 class="search-dialog">
+            <div data-e-42ee84ec30f250a8 class="search-input-header">
+                <span data-e-42ee84ec30f250a8>🔍</span>
+                <input data-e-42ee84ec30f250a8 
+                    id="global-search-input"
+                    class="search-input-field" 
+                    placeholder="Search docs, APIs, signals, guides..." 
+                    value="${window.__erm_escape(searchQuery.value)}" 
+                    ${window.__erm_register_event('input', (event) => { ((e) => { searchQuery.value = e.target.value; })(event); })}
+                />
+                <button data-e-42ee84ec30f250a8 style="background: none; border: none; color: #64748b; cursor: pointer; font-size: 1rem;" ${window.__erm_register_event('click', (event) => { (closeSearch)(event); })}>✕</button>
+            </div>
+            <div data-e-42ee84ec30f250a8 class="search-results-list">
+                <Link to="/docs" class="search-item" ${window.__erm_register_event('click', (event) => { (closeSearch)(event); })}>
+                    <div data-e-42ee84ec30f250a8>
+                        <strong data-e-42ee84ec30f250a8>Getting Started Quickstart</strong>
+                        <div data-e-42ee84ec30f250a8 style="font-size: 0.8rem; color: #64748b;">Installation, eronom init, running dev server</div>
+                    </div>
+                    <span data-e-42ee84ec30f250a8>→</span>
+                </Link>
+                <Link to="/docs" class="search-item" ${window.__erm_register_event('click', (event) => { (closeSearch)(event); })}>
+                    <div data-e-42ee84ec30f250a8>
+                        <strong data-e-42ee84ec30f250a8>Reactive Signals (useState)</strong>
+                        <div data-e-42ee84ec30f250a8 style="font-size: 0.8rem; color: #64748b;">Fine-grained reactivity without Virtual DOM</div>
+                    </div>
+                    <span data-e-42ee84ec30f250a8>→</span>
+                </Link>
+                <Link to="/api" class="search-item" ${window.__erm_register_event('click', (event) => { (closeSearch)(event); })}>
+                    <div data-e-42ee84ec30f250a8>
+                        <strong data-e-42ee84ec30f250a8>Server API Routes</strong>
+                        <div data-e-42ee84ec30f250a8 style="font-size: 0.8rem; color: #64748b;">server/api/routes.er configuration</div>
+                    </div>
+                    <span data-e-42ee84ec30f250a8>→</span>
+                </Link>
+                <Link to="/benchmarks" class="search-item" ${window.__erm_register_event('click', (event) => { (closeSearch)(event); })}>
+                    <div data-e-42ee84ec30f250a8>
+                        <strong data-e-42ee84ec30f250a8>Performance Benchmarks</strong>
+                        <div data-e-42ee84ec30f250a8 style="font-size: 0.8rem; color: #64748b;">Eronom vs Next.js vs Nuxt vs Bun speed</div>
+                    </div>
+                    <span data-e-42ee84ec30f250a8>→</span>
+                </Link>
+            </div>
+        </div>
+    </div>
+`; }; return __erm_new; });
+let isMobileMenuOpen = useState(false, "app_components_Header_erm__isMobileMenuOpen", "app_pages_docs_erm__isMobileMenuOpen");
+    let isSearchOpen = useState(false, "app_components_Header_erm__isSearchOpen", "app_pages_docs_erm__isSearchOpen");
+    let searchQuery = useState('', "app_components_Header_erm__searchQuery", "app_pages_docs_erm__searchQuery");
+
+    function openSearch() {
+        isSearchOpen.value = true;
+    }
+    function closeSearch() {
+        isSearchOpen.value = false;
+    }
+    function toggleMobileMenu() {
+        isMobileMenuOpen.value = !isMobileMenuOpen.value;
+    }
+window.__erm_events.push({ id: anchorId + "erm-evt-736", event: "click", handler: (event) => { (openSearch)(event); if (typeof window.__erm_update === 'function') window.__erm_update(); } }); // line:21
+window.__erm_events.push({ id: anchorId + "erm-evt-1874", event: "click", handler: (event) => { (toggleMobileMenu)(event); if (typeof window.__erm_update === 'function') window.__erm_update(); } }); // line:33
+};
+
+Header(anchorId + "erm-anchor-header-3076", {});
+window.Sidebar = function(anchorId, props) {
+  try {
+    let el = document.getElementById(anchorId);
+    if (el && el.innerHTML.trim() === "") {
+      el.innerHTML = `
+
+
+
+<aside data-e-501e0e9a14e69682 class="sidebar-nav">
+    <div data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-501e0e9a14e69682 class="sidebar-title">🚀 Getting Started</div>
+        <ul data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#introduction" class="sidebar-item active">Introduction</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#quick-start" class="sidebar-item">Quick Start (60s)</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#installation" class="sidebar-item">Installation</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#project-structure" class="sidebar-item">Project Structure</a></li>
+        </ul>
+    </div>
+
+    <div data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-501e0e9a14e69682 class="sidebar-title">⚡ Core Concepts</div>
+        <ul data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#signals" class="sidebar-item">Reactive Signals <span data-e-501e0e9a14e69682 class="mini-badge">useState</span></a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#effects" class="sidebar-item">Effects & Lifecycle</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#control-flow" class="sidebar-item">Control Flow (if / for)</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#context-api" class="sidebar-item">Context API</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#components" class="sidebar-item">Components & Layouts</a></li>
+        </ul>
+    </div>
+
+    <div data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-501e0e9a14e69682 class="sidebar-title">🌐 Full-Stack & Server</div>
+        <ul data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#server-routes" class="sidebar-item">Server API Routes</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#hmr-engine" class="sidebar-item">Rust HMR Engine</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="#scoped-css" class="sidebar-item">Scoped CSS Styling</a></li>
+        </ul>
+    </div>
+
+    <div data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-501e0e9a14e69682 class="sidebar-title">📖 API Reference</div>
+        <ul data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="/api" class="sidebar-item">Runtime API</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="/api" class="sidebar-item">CLI Commands</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="/api" class="sidebar-item">eronom.toml Config</a></li>
+        </ul>
+    </div>
+
+    <div data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-501e0e9a14e69682 class="sidebar-title">⚡ Performance & Guides</div>
+        <ul data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="/benchmarks" class="sidebar-item">Speed Benchmarks</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="/guides" class="sidebar-item">VS Code Setup Guide</a></li>
+            <li data-e-501e0e9a14e69682><a data-e-501e0e9a14e69682 href="/guides" class="sidebar-item">Deployment Guide</a></li>
+        </ul>
+    </div>
+</aside>
+`;
+    }
+  } catch(e) { console.error(e); }
+  let activeSection = 'introduction';
+};
+
+Sidebar(anchorId + "erm-anchor-sidebar-3224", {});
+window.Footer = function(anchorId, props) {
+  try {
+    let el = document.getElementById(anchorId);
+    if (el && el.innerHTML.trim() === "") {
+      el.innerHTML = `
+
+<footer data-e-d27861136846622 class="footer">
+    <div data-e-d27861136846622 class="container">
+        <div data-e-d27861136846622 class="footer-grid">
+            <div data-e-d27861136846622 class="footer-brand">
+                <div data-e-d27861136846622 class="footer-brand-title">
+                    <span data-e-d27861136846622 style="color: #00f2fe;">⚡</span> ERONOM
+                </div>
+                <p data-e-d27861136846622 class="footer-desc">
+                    The next-generation, Rust-powered reactive web framework designed for ultimate speed, developer joy, and zero-overhead performance.
+                </p>
+                <div data-e-d27861136846622 class="system-status">
+                    <span data-e-d27861136846622 class="status-dot"></span>
+                    <span data-e-d27861136846622>All Systems Operational</span>
+                </div>
+            </div>
+
+            <div data-e-d27861136846622>
+                <h4 data-e-d27861136846622 class="footer-heading">Documentation</h4>
+                <ul data-e-d27861136846622 class="footer-links">
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/docs" class="footer-link">Getting Started</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/docs" class="footer-link">Reactive Signals</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/docs" class="footer-link">Control Flow</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/docs" class="footer-link">Context API</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/api" class="footer-link">API Reference</a></li>
+                </ul>
+            </div>
+
+            <div data-e-d27861136846622>
+                <h4 data-e-d27861136846622 class="footer-heading">Framework</h4>
+                <ul data-e-d27861136846622 class="footer-links">
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/guides" class="footer-link">Architecture</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/benchmarks" class="footer-link">Benchmarks</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/guides" class="footer-link">VS Code Extension</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="/guides" class="footer-link">Server Routes</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
+                </ul>
+            </div>
+
+            <div data-e-d27861136846622>
+                <h4 data-e-d27861136846622 class="footer-heading">Community</h4>
+                <ul data-e-d27861136846622 class="footer-links">
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-e-d27861136846622 class="footer-bottom">
+            <div data-e-d27861136846622>
+                © 2026 Eronom
+            </div>
+            <div data-e-d27861136846622>
+                Built with <strong data-e-d27861136846622 style="color: #00f2fe;">erm</strong>
+            </div>
+        </div>
+    </div>
+</footer>
+`;
+    }
+  } catch(e) { console.error(e); }
+  
+};
+
+Footer(anchorId + "erm-anchor-footer-12052", {});
+window.__erm_bindings.push({ id: "erm-bind-12190", get: () => (liveCounter.value) });
+window.__erm_bindings.push({ id: "erm-bind-12405", get: () => (liveCounter.value * 5) });
+window.__erm_events.push({ id: "erm-evt-12125", event: "click", handler: (event) => { (() => { liveCounter.value++; })(event); if (typeof window.__erm_update === 'function') window.__erm_update(); } }); // line:192
+}
+</script>
+</head>
+<body>
+    <div data-e-82c5d114a3007cc6 class="main-wrapper">
+        
+
+
+
+<div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="erm-anchor-header-3076" class="erm-anchor">
+
+
+
+<header data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="header-nav">
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="nav-container">
+        <a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 href="/" class="brand-logo">
+            <img data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 src="/eronom_logo.png" alt="Eronom Logo" class="brand-logo-img" />
+            <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8>Eronom</span>
+            <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="version-pill">v0.9.2</span>
+        </a>
+
+        <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="nav-menu">
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 href="/docs" class="nav-link">Docs</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 href="/api" class="nav-link">API Reference</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 href="/guides" class="nav-link">Guides</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 href="/benchmarks" class="nav-link">Benchmarks</a></li>
+        </ul>
+
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 style="display: flex; align-items: center; gap: 12px;">
+            <button data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="search-btn" id="erm-anchor-header-3076erm-evt-736" >
+                <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8>🔍 Search documentation...</span>
+                <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="shortcut-badge">⌘K</span>
+            </button>
+
+            <a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 href="https://github.com" target="_blank" class="github-btn">
+                <svg data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8>1</span>
+            </a>
+
+            <button data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 class="mobile-toggle" id="erm-anchor-header-3076erm-evt-1874" >
+                ☰
+            </button>
+        </div>
+    </div>
+</header>
+
+<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-42ee84ec30f250a8 id="erm-anchor-header-3076erm-if-0" style="display:contents;"></span>
+</div>
+
+<main data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="content-area">
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="container">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="docs-layout">
+            <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 LEFT SIDEBAR -->
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="erm-anchor-sidebar-3224" class="erm-anchor">
+
+
+
+<aside data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-nav">
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-title">🚀 Getting Started</div>
+        <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#introduction" class="sidebar-item active">Introduction</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#quick-start" class="sidebar-item">Quick Start (60s)</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#installation" class="sidebar-item">Installation</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#project-structure" class="sidebar-item">Project Structure</a></li>
+        </ul>
+    </div>
+
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-title">⚡ Core Concepts</div>
+        <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#signals" class="sidebar-item">Reactive Signals <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="mini-badge">useState</span></a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#effects" class="sidebar-item">Effects & Lifecycle</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#control-flow" class="sidebar-item">Control Flow (if / for)</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#context-api" class="sidebar-item">Context API</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#components" class="sidebar-item">Components & Layouts</a></li>
+        </ul>
+    </div>
+
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-title">🌐 Full-Stack & Server</div>
+        <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#server-routes" class="sidebar-item">Server API Routes</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#hmr-engine" class="sidebar-item">Rust HMR Engine</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="#scoped-css" class="sidebar-item">Scoped CSS Styling</a></li>
+        </ul>
+    </div>
+
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-title">📖 API Reference</div>
+        <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="/api" class="sidebar-item">Runtime API</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="/api" class="sidebar-item">CLI Commands</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="/api" class="sidebar-item">eronom.toml Config</a></li>
+        </ul>
+    </div>
+
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-group">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-title">⚡ Performance & Guides</div>
+        <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 class="sidebar-list">
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="/benchmarks" class="sidebar-item">Speed Benchmarks</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="/guides" class="sidebar-item">VS Code Setup Guide</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-501e0e9a14e69682 href="/guides" class="sidebar-item">Deployment Guide</a></li>
+        </ul>
+    </div>
+</aside>
+</div>
+
+            <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 CENTER MAIN CONTENT -->
+            <article data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="docs-main-content">
+                <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 INTRODUCTION -->
+                <section data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="introduction" class="doc-section">
+                    <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="badge badge-purple" style="margin-bottom: 12px;">Documentation Overview</span>
+                    <h1 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-h1">Introduction to Eronom</h1>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        Welcome to the official <strong data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>Eronom Framework</strong> documentation. Eronom is a next-generation full-stack web framework designed for extreme performance, minimal memory footprints, and intuitive signal-based reactivity.
+                    </p>
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="callout-box">
+                        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="callout-title">💡 Why Eronom?</div>
+                        <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="margin: 0; font-size: 0.9rem; color: #94a3b8;">
+                            Traditional web frameworks re-render component trees using virtual DOM reconciliation. Eronom compiles <code data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>.erm</code> components down to direct fine-grained signal subscriptions that update precise DOM elements instantaneously.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 QUICK START -->
+                <section data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="quick-start" class="doc-section">
+                    <h2 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-h2">Quick Start (60 Seconds)</h2>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        Initialize a new Eronom application using the CLI system binary:
+                    </p>
+                    
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="code-block">
+                        <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Create a new project directory</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+                        <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">eronom init</span> my-app<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+                        <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Move to project directory</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+                        <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">cd</span> my-app<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+                        <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Start the Rust-powered HMR dev server</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+                        <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">eronom dev</span> .
+                    </div>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        Open your browser to <code data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">http://localhost:4000</code>. Any file edit in <code data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>app/pages/</code> will trigger instant HMR updates!
+                    </p>
+                </section>
+
+                <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 PROJECT STRUCTURE -->
+                <section data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="project-structure" class="doc-section">
+                    <h2 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-h2">Project Architecture & Structure</h2>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        Eronom projects adhere to a clean, transparent directory structure:
+                    </p>
+
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="code-block">
+my-app/<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+├── app/<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   ├── components/       <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Reusable .erm component files</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   │   ├── Header.erm<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   │   └── Footer.erm<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   ├── layouts/          <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Root HTML layout wrappers</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   │   └── layout.erm<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   └── pages/            <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># File-system page routes</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│       └── index.erm     <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Served at /</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+├── server/<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│   └── api/<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+│       └── routes.er     <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Server HTTP endpoints</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+└── eronom.toml           <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;"># Eronom configuration file</span>
+                    </div>
+                </section>
+
+                <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 REACTIVE SIGNALS -->
+                <section data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="signals" class="doc-section">
+                    <h2 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-h2">Reactive Signals (useState)</h2>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        State management in Eronom is powered by fine-grained signals initialized with <code data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>useState()</code>.
+                    </p>
+                    
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="code-block">
+&lt;script&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;">// Initialize a reactive state signal</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">let</span> count = <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #f59e0b;">useState</span>(<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #ec4899;">0</span>);<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;">// Computed signal that automatically tracks dependencies</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">let</span> double = <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #f59e0b;">useState</span>(() =&gt; count * <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #ec4899;">2</span>);<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&lt;/script&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&lt;div&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&lt;button onClick=&#123;() =&gt; count++&#125;&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&nbsp;&nbsp;Count is &#123;count&#125; (Double: &#123;double&#125;)<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&lt;/button&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&lt;/div&gt;
+                    </div>
+
+                    <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 Live Demo Widget -->
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="glass-card" style="padding: 24px; margin: 24px 0;">
+                        <h4 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="font-size: 0.95rem; color: #00f2fe; margin-bottom: 12px;">Live Interactive Docs Sandbox</h4>
+                        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="display: flex; align-items: center; gap: 16px;">
+                            <button data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" id="erm-evt-12125" >
+                                Increment Signal (<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="erm-bind-12190">1</span>)
+                            </button>
+                            <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #cbd5e1; font-size: 0.9rem;">
+                                Computed Value: <strong data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #9d4edd;"><span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="erm-bind-12405">5</span></strong>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 CONTROL FLOW -->
+                <section data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="control-flow" class="doc-section">
+                    <h2 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-h2">Control Flow (if / for Directives)</h2>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        Eronom supports clean native template directives for conditional rendering and looping without complex map syntax:
+                    </p>
+
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="code-block">
+&lt;script&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">let</span> items = <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #f59e0b;">useState</span>([<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #10b981;">"Apple"</span>, <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #10b981;">"Banana"</span>, <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #10b981;">"Cherry"</span>]);<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">let</span> isLoggedIn = <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #f59e0b;">useState</span>(true);<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&lt;/script&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+if isLoggedIn &#123;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&lt;h3&gt;Welcome back!&lt;/h3&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;for item, i in items &#123;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Item &#123;i + 1&#125;: &#123;item&#125;&lt;/p&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&#125;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&#125; else &#123;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&nbsp;&nbsp;&lt;p&gt;Please log in to continue.&lt;/p&gt;<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+&#125;
+                    </div>
+                </section>
+
+                <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 CONTEXT API -->
+                <section data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="context-api" class="doc-section">
+                    <h2 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-h2">Context API & State Sharing</h2>
+                    <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="doc-p">
+                        Share signals seamlessly across child components without prop drilling:
+                    </p>
+                    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="code-block">
+<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;">// Export state signal from root page</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">export let</span> activeTheme = <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #f59e0b;">useState</span>(<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #10b981;">'dark'</span>);<br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #64748b;">// Import signal inside child Header component</span><br/ data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7>
+<span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">import</span> &#123; activeTheme &#125; <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #00f2fe;">from</span> <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 style="color: #10b981;">"@pages/index.erm"</span>;
+                    </div>
+                </section>
+            </article>
+
+            <!-- data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 RIGHT TOC PANEL -->
+            <aside data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="docs-toc">
+                <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="toc-title">On This Page</div>
+                <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 class="toc-list">
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 href="#introduction" class="toc-item">Introduction</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 href="#quick-start" class="toc-item">Quick Start</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 href="#project-structure" class="toc-item">Project Structure</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 href="#signals" class="toc-item">Reactive Signals</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 href="#control-flow" class="toc-item">Control Flow</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 href="#context-api" class="toc-item">Context API</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 id="erm-anchor-footer-12052" class="erm-anchor">
+
+<footer data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer">
+    <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="container">
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-grid">
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-brand">
+                <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-brand-title">
+                    <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 style="color: #00f2fe;">⚡</span> ERONOM
+                </div>
+                <p data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-desc">
+                    The next-generation, Rust-powered reactive web framework designed for ultimate speed, developer joy, and zero-overhead performance.
+                </p>
+                <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="system-status">
+                    <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="status-dot"></span>
+                    <span data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622>All Systems Operational</span>
+                </div>
+            </div>
+
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622>
+                <h4 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-heading">Documentation</h4>
+                <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-links">
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/docs" class="footer-link">Getting Started</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/docs" class="footer-link">Reactive Signals</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/docs" class="footer-link">Control Flow</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/docs" class="footer-link">Context API</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/api" class="footer-link">API Reference</a></li>
+                </ul>
+            </div>
+
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622>
+                <h4 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-heading">Framework</h4>
+                <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-links">
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/guides" class="footer-link">Architecture</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/benchmarks" class="footer-link">Benchmarks</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/guides" class="footer-link">VS Code Extension</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="/guides" class="footer-link">Server Routes</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
+                </ul>
+            </div>
+
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622>
+                <h4 data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-heading">Community</h4>
+                <ul data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-links">
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 class="footer-bottom">
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622>
+                © 2026 Eronom
+            </div>
+            <div data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622>
+                Built with <strong data-e-82c5d114a3007cc6 data-e-5c64204ee23920e7 data-e-d27861136846622 style="color: #00f2fe;">erm</strong>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+    </div>
+
+    
+</body>
+</html>

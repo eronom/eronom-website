@@ -1,0 +1,166 @@
+<style>
+    .footer {
+        background: #06070a;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 64px 0 32px;
+        margin-top: 80px;
+        color: #94a3b8;
+        font-size: 0.9rem;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 40px;
+        margin-bottom: 48px;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .footer-brand-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer-desc {
+        color: #64748b;
+        max-width: 320px;
+        line-height: 1.6;
+        font-size: 0.88rem;
+    }
+
+    .footer-heading {
+        color: #f8fafc;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+    }
+
+    .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-link {
+        color: #94a3b8;
+        transition: color 0.2s ease;
+        text-decoration: none;
+    }
+    .footer-link:hover {
+        color: #00f2fe;
+    }
+
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.82rem;
+        color: #64748b;
+    }
+
+    .system-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        font-weight: 500;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        background: #10b981;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #10b981;
+    }
+
+    @media (max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+    }
+</style>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand-title">
+                    <span style="color: #00f2fe;">⚡</span> ERONOM
+                </div>
+                <p class="footer-desc">
+                    The next-generation, Rust-powered reactive web framework designed for ultimate speed, developer joy, and zero-overhead performance.
+                </p>
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <span>All Systems Operational</span>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">Documentation</h4>
+                <ul class="footer-links">
+                    <li><Link to="/docs" class="footer-link">Getting Started</Link></li>
+                    <li><Link to="/docs" class="footer-link">Reactive Signals</Link></li>
+                    <li><Link to="/docs" class="footer-link">Control Flow</Link></li>
+                    <li><Link to="/docs" class="footer-link">Context API</Link></li>
+                    <li><Link to="/api" class="footer-link">API Reference</Link></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">Framework</h4>
+                <ul class="footer-links">
+                    <li><Link to="/guides" class="footer-link">Architecture</Link></li>
+                    <li><Link to="/benchmarks" class="footer-link">Benchmarks</Link></li>
+                    <li><Link to="/guides" class="footer-link">VS Code Extension</Link></li>
+                    <li><Link to="/guides" class="footer-link">Server Routes</Link></li>
+                    <li><a href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">Community</h4>
+                <ul class="footer-links">
+                    <li><a href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
+                    <li><a href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
+                    <li><a href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
+                    <li><a href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                © 2026 Eronom
+            </div>
+            <div>
+                Built with <strong style="color: #00f2fe;">erm</strong>
+            </div>
+        </div>
+    </div>
+</footer>
