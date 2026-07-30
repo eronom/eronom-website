@@ -183,31 +183,69 @@
             border-color: var(--border-hover);
             box-shadow: var(--glow-cyan);
         }
-.guides-container[data-e-7ca145fb6d1aca15] {
+.api-container[data-e-2b4b0cdb57a817ee] {
         padding: 40px 0 80px;
-    }.guide-card[data-e-7ca145fb6d1aca15] {
+    }.api-header[data-e-2b4b0cdb57a817ee] {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 40px;
+    }.api-search-box[data-e-2b4b0cdb57a817ee] {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        position: relative;
+    }.api-search-input[data-e-2b4b0cdb57a817ee] {
+        width: 100%;
         background: var(--bg-surface);
         border: 1px solid var(--border-color);
-        border-radius: 20px;
-        padding: 32px;
-        margin-bottom: 32px;
-        transition: all 0.25s ease;
-    }.guide-card[data-e-7ca145fb6d1aca15]:hover {
-        border-color: rgba(0, 242, 254, 0.3);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }.guide-title[data-e-7ca145fb6d1aca15] {
-        font-size: 1.5rem;
-        font-weight: 700;
+        border-radius: 14px;
+        padding: 16px 20px 16px 48px;
         color: #ffffff;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.2s ease;
+    }.api-search-input[data-e-2b4b0cdb57a817ee]:focus {
+        border-color: #00f2fe;
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }.search-icon-pos[data-e-2b4b0cdb57a817ee] {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #64748b;
+        font-size: 1.1rem;
+    }.api-grid[data-e-2b4b0cdb57a817ee] {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 24px;
+    }.api-card[data-e-2b4b0cdb57a817ee] {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.25s ease;
+    }.api-card[data-e-2b4b0cdb57a817ee]:hover {
+        border-color: rgba(0, 242, 254, 0.3);
+        transform: translateY(-2px);
+    }.api-sig[data-e-2b4b0cdb57a817ee] {
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        font-weight: 600;
+        color: #00f2fe;
+        margin-bottom: 8px;
+    }.api-badge[data-e-2b4b0cdb57a817ee] {
+        display: inline-block;
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: rgba(157, 78, 221, 0.15);
+        color: #9d4edd;
+        font-weight: 700;
         margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }.guide-desc[data-e-7ca145fb6d1aca15] {
+    }.api-desc[data-e-2b4b0cdb57a817ee] {
         color: #94a3b8;
-        font-size: 0.95rem;
-        line-height: 1.7;
-        margin-bottom: 20px;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
     }
 .header-nav[data-e-42ee84ec30f250a8] {
         position: sticky;
@@ -502,7 +540,7 @@ window.__erm_params = {};
                 if (searchModal) searchModal.style.display = 'none';
             }
         });
-
+let apiSearch = useState('', "app_pages_api_erm__apiSearch");
 window.Header = function(anchorId, props) {
   try {
     let el = document.getElementById(anchorId);
@@ -513,17 +551,17 @@ window.Header = function(anchorId, props) {
 
 <header data-e-42ee84ec30f250a8 class="header-nav">
     <div data-e-42ee84ec30f250a8 class="nav-container">
-        <a data-e-42ee84ec30f250a8 href="./" class="brand-logo">
-            <img data-e-42ee84ec30f250a8 src="public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" />
+        <a data-e-42ee84ec30f250a8 href="../" class="brand-logo">
+            <img data-e-42ee84ec30f250a8 src="../public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='../eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" />
             <span data-e-42ee84ec30f250a8>Eronom</span>
             <span data-e-42ee84ec30f250a8 class="version-pill">v0.9.2</span>
         </a>
 
         <ul data-e-42ee84ec30f250a8 class="nav-menu">
-            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="docs/" class="nav-link">Docs</a></li>
-            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="api/" class="nav-link">API Reference</a></li>
-            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="guides/" class="nav-link">Guides</a></li>
-            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="benchmarks/" class="nav-link">Benchmarks</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="../docs/" class="nav-link">Docs</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="../api/" class="nav-link">API Reference</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="../guides/" class="nav-link">Guides</a></li>
+            <li data-e-42ee84ec30f250a8><a data-e-42ee84ec30f250a8 href="../benchmarks/" class="nav-link">Benchmarks</a></li>
         </ul>
 
         <div data-e-42ee84ec30f250a8 style="display: flex; align-items: center; gap: 12px;">
@@ -597,9 +635,9 @@ window.Header = function(anchorId, props) {
         </div>
     </div>
 `; }; return __erm_new; });
-let isMobileMenuOpen = useState(false, "app_components_Header_erm__isMobileMenuOpen", "app_pages_guides_erm__isMobileMenuOpen");
-    let isSearchOpen = useState(false, "app_components_Header_erm__isSearchOpen", "app_pages_guides_erm__isSearchOpen");
-    let searchQuery = useState('', "app_components_Header_erm__searchQuery", "app_pages_guides_erm__searchQuery");
+let isMobileMenuOpen = useState(false, "app_components_Header_erm__isMobileMenuOpen", "app_pages_api_erm__isMobileMenuOpen");
+    let isSearchOpen = useState(false, "app_components_Header_erm__isSearchOpen", "app_pages_api_erm__isSearchOpen");
+    let searchQuery = useState('', "app_components_Header_erm__searchQuery", "app_pages_api_erm__searchQuery");
 
     function openSearch() {
         isSearchOpen.value = true;
@@ -614,7 +652,7 @@ window.__erm_events.push({ id: anchorId + "erm-evt-736", event: "click", handler
 window.__erm_events.push({ id: anchorId + "erm-evt-1874", event: "click", handler: (event) => { (toggleMobileMenu)(event); if (typeof window.__erm_update === 'function') window.__erm_update(); } }); // line:33
 };
 
-Header(anchorId + "erm-anchor-header-891", {});
+Header(anchorId + "erm-anchor-header-2064", {});
 window.Footer = function(anchorId, props) {
   try {
     let el = document.getElementById(anchorId);
@@ -626,7 +664,7 @@ window.Footer = function(anchorId, props) {
         <div data-e-d27861136846622 class="footer-grid">
             <div data-e-d27861136846622 class="footer-brand">
                 <div data-e-d27861136846622 class="footer-brand-title">
-                    <img data-e-d27861136846622 src="public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" style="height: 28px; width: auto;" /> ERONOM
+                    <img data-e-d27861136846622 src="../public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='../eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" style="height: 28px; width: auto;" /> ERONOM
                 </div>
                 <p data-e-d27861136846622 class="footer-desc">
                     The next-generation, Rust-powered reactive web framework designed for ultimate speed, developer joy, and zero-overhead performance.
@@ -636,21 +674,21 @@ window.Footer = function(anchorId, props) {
             <div data-e-d27861136846622>
                 <h4 data-e-d27861136846622 class="footer-heading">Documentation</h4>
                 <ul data-e-d27861136846622 class="footer-links">
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="docs/" class="footer-link">Getting Started</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="docs/" class="footer-link">Reactive Signals</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="docs/" class="footer-link">Control Flow</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="docs/" class="footer-link">Context API</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="api/" class="footer-link">API Reference</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../docs/" class="footer-link">Getting Started</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../docs/" class="footer-link">Reactive Signals</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../docs/" class="footer-link">Control Flow</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../docs/" class="footer-link">Context API</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../api/" class="footer-link">API Reference</a></li>
                 </ul>
             </div>
 
             <div data-e-d27861136846622>
                 <h4 data-e-d27861136846622 class="footer-heading">Framework</h4>
                 <ul data-e-d27861136846622 class="footer-links">
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="guides/" class="footer-link">Architecture</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="benchmarks/" class="footer-link">Benchmarks</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="guides/" class="footer-link">VS Code Extension</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="guides/" class="footer-link">Server Routes</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../guides/" class="footer-link">Architecture</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../benchmarks/" class="footer-link">Benchmarks</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../guides/" class="footer-link">VS Code Extension</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="../guides/" class="footer-link">Server Routes</a></li>
                     <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
                 </ul>
             </div>
@@ -682,9 +720,8 @@ window.Footer = function(anchorId, props) {
   
 };
 
-Footer(anchorId + "erm-anchor-footer-3787", {});
-window.__erm_bindings.push({ id: "erm-bind-4836", get: () => ( router ) });
-window.__erm_bindings.push({ id: "erm-bind-4982", get: () => ( id: 1, name: "Alice" ) });
+Footer(anchorId + "erm-anchor-footer-6326", {});
+window.__erm_events.push({ id: "erm-evt-3681", event: "input", handler: (event) => { ((e) => { apiSearch.value = e.target.value; })(event); if (typeof window.__erm_update === 'function') window.__erm_update(); } }); // line:63
 }
 </script>
 </head>
@@ -694,160 +731,179 @@ window.__erm_bindings.push({ id: "erm-bind-4982", get: () => ( id: 1, name: "Ali
 
 
 
-<div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 id="erm-anchor-header-891" class="erm-anchor">
+<div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee id="erm-anchor-header-2064" class="erm-anchor">
 
 
 
-<header data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="header-nav">
-    <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="nav-container">
-        <a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 href="./" class="brand-logo">
-            <img data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 src="public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" />
-            <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8>Eronom</span>
-            <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="version-pill">v0.9.2</span>
+<header data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="header-nav">
+    <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="nav-container">
+        <a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 href="../" class="brand-logo">
+            <img data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 src="../public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='../eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" />
+            <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8>Eronom</span>
+            <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="version-pill">v0.9.2</span>
         </a>
 
-        <ul data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="nav-menu">
-            <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 href="docs/" class="nav-link">Docs</a></li>
-            <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 href="api/" class="nav-link">API Reference</a></li>
-            <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 href="guides/" class="nav-link">Guides</a></li>
-            <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 href="benchmarks/" class="nav-link">Benchmarks</a></li>
+        <ul data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="nav-menu">
+            <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 href="../docs/" class="nav-link">Docs</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 href="../api/" class="nav-link">API Reference</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 href="../guides/" class="nav-link">Guides</a></li>
+            <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 href="../benchmarks/" class="nav-link">Benchmarks</a></li>
         </ul>
 
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 style="display: flex; align-items: center; gap: 12px;">
-            <button data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="search-btn" id="erm-anchor-header-891erm-evt-736" >
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8>🔍 Search documentation...</span>
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="shortcut-badge">⌘K</span>
+        <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 style="display: flex; align-items: center; gap: 12px;">
+            <button data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="search-btn" id="erm-anchor-header-2064erm-evt-736" >
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8>🔍 Search documentation...</span>
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="shortcut-badge">⌘K</span>
             </button>
 
-            <a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 href="https://github.com" target="_blank" class="github-btn">
-                <svg data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            <a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 href="https://github.com" target="_blank" class="github-btn">
+                <svg data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8>1</span>
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8>1</span>
             </a>
 
-            <button data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 class="mobile-toggle" id="erm-anchor-header-891erm-evt-1874" >
+            <button data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 class="mobile-toggle" id="erm-anchor-header-2064erm-evt-1874" >
                 ☰
             </button>
         </div>
     </div>
 </header>
 
-<span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-42ee84ec30f250a8 id="erm-anchor-header-891erm-if-0" style="display:contents;"></span>
+<span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-42ee84ec30f250a8 id="erm-anchor-header-2064erm-if-0" style="display:contents;"></span>
 </div>
 
-<main data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="content-area guides-container">
-    <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="container" style="max-width: 900px;">
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="text-align: center; margin-bottom: 48px;">
-            <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="badge badge-purple" style="margin-bottom: 12px;">Step-by-Step Tutorials</span>
-            <h1 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="font-size: 2.8rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">Eronom Guides</h1>
-            <p data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="color: #94a3b8; font-size: 1rem;">
-                Learn how to build, optimize, and deploy high-performance applications with Eronom.
+<main data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="content-area api-container">
+    <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="container">
+        <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-header">
+            <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="badge badge-green" style="margin-bottom: 12px;">Full API Surface</span>
+            <h1 data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="font-size: 2.8rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">API Reference</h1>
+            <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="color: #94a3b8; font-size: 1rem;">
+                Explore runtime hooks, signals, template syntax, CLI flags, and configuration properties.
             </p>
         </div>
 
-        <!-- data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 GUIDE 1 -->
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-card">
-            <h2 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-title">
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>💻</span>
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>VS Code Extension Setup & Syntax Highlighting</span>
-            </h2>
-            <p data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-desc">
-                Get full syntax highlighting, tag auto-closing, and signal completion inside <code data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>.erm</code> files in Visual Studio Code.
-            </p>
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="background: #0d1117; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: #cbd5e1;">
-                1. Open VS Code Extensions (Ctrl+Shift+X)<br/ data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>
-                2. Search for <strong data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="color: #00f2fe;">"Eronom Language Tools"</strong><br/ data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>
-                3. Click Install to enable automatic bracket matching & template highlighting.
+        <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-search-box">
+            <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="search-icon-pos">🔍</span>
+            <input data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee 
+                class="api-search-input" 
+                placeholder="Filter APIs by name (e.g. useState, useEffect, eronom dev)..." 
+                value="" 
+                id="erm-evt-3681" 
+            />
+        </div>
+
+        <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-grid">
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-card">
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-badge">RUNTIME HOOK</span>
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-sig">useState(initialValue)</div>
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-desc">
+                    Creates a fine-grained reactive state signal. Accepts a primitive value, object, array, or dynamic accessor function.
+                </p>
+                <pre data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">let count = useState(0);<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>let double = useState(() =&gt; count * 2);</pre>
             </div>
-        </div>
 
-        <!-- data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 GUIDE 2 -->
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-card">
-            <h2 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-title">
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>🌐</span>
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>Building Full-Stack API Routes</span>
-            </h2>
-            <p data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-desc">
-                Learn how to handle HTTP requests, return JSON responses, and integrate backend databases in <code data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>server/api/routes.er</code>.
-            </p>
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="background: #0d1117; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: #cbd5e1;">
-                import <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 id="erm-bind-4836"></span> from "std/http";<br/ data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15><br/ data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>
-                let app = router();<br/ data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>
-                app.get('/api/users', (c) => c.json([<span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 id="erm-bind-4982"></span>]));
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-card">
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-badge">RUNTIME HOOK</span>
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-sig">useEffect(fn, deps)</div>
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-desc">
+                    Executes side-effect logic whenever reactive dependencies inside the dependency array trigger mutations.
+                </p>
+                <pre data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">useEffect(() =&gt; &#123;<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>  console.log("Count changed:", count);<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>&#125;, [count]);</pre>
             </div>
-        </div>
 
-        <!-- data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 GUIDE 3 -->
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-card">
-            <h2 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-title">
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>🚀</span>
-                <span data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>Production Build & Rust Deployment</span>
-            </h2>
-            <p data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 class="guide-desc">
-                Compile your Eronom app into a single self-contained binary with sub-millisecond cold start times.
-            </p>
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 style="background: #0d1117; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: #cbd5e1;">
-                $ eronom build<br/ data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15>
-                Installed production bundle under ./dist/server
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-card">
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-badge">LIFECYCLE</span>
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-sig">onMount(fn)</div>
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-desc">
+                    Runs after component DOM mounting completes. Optionally return a cleanup function to execute on unmount.
+                </p>
+                <pre data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">onMount(() =&gt; &#123;<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>  const timer = setInterval(...);<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>  return () =&gt; clearInterval(timer);<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>&#125;);</pre>
+            </div>
+
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-card">
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-badge">ROUTING</span>
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-sig">&lt;Link to="/path"&gt;</div>
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-desc">
+                    Client-side navigation component for zero-reload route switching without full browser reloads.
+                </p>
+                <pre data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">&lt;Link to="/docs" class="nav-link"&gt;<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>  Go to Docs<br/ data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee>&lt;/Link&gt;</pre>
+            </div>
+
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-card">
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-badge">CLI COMMAND</span>
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-sig">eronom init [dir]</div>
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-desc">
+                    Initializes a fresh Eronom project with pre-configured directory layout, standard routing, and HMR server.
+                </p>
+                <pre data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">$ eronom init docs</pre>
+            </div>
+
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-card">
+                <span data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-badge">CLI COMMAND</span>
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-sig">eronom dev [dir]</div>
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee class="api-desc">
+                    Launches the native Rust dev server with instant HMR compilation on http://localhost:4000.
+                </p>
+                <pre data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee style="background: #0d1117; padding: 12px; border-radius: 8px; font-size: 0.82rem; color: #cbd5e1;">$ eronom dev .</pre>
             </div>
         </div>
     </div>
 </main>
 
-<div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 id="erm-anchor-footer-3787" class="erm-anchor">
+<div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee id="erm-anchor-footer-6326" class="erm-anchor">
 
-<footer data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer">
-    <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="container">
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-grid">
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-brand">
-                <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-brand-title">
-                    <img data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 src="public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" style="height: 28px; width: auto;" /> ERONOM
+<footer data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer">
+    <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="container">
+        <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-grid">
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-brand">
+                <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-brand-title">
+                    <img data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 src="../public/eronom_logo.png" onerror="if(this.src!='eronom_logo.png')this.src='../eronom_logo.png'" alt="Eronom Logo" class="brand-logo-img" style="height: 28px; width: auto;" /> ERONOM
                 </div>
-                <p data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-desc">
+                <p data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-desc">
                     The next-generation, Rust-powered reactive web framework designed for ultimate speed, developer joy, and zero-overhead performance.
                 </p>
             </div>
 
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622>
-                <h4 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-heading">Documentation</h4>
-                <ul data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-links">
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="docs/" class="footer-link">Getting Started</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="docs/" class="footer-link">Reactive Signals</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="docs/" class="footer-link">Control Flow</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="docs/" class="footer-link">Context API</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="api/" class="footer-link">API Reference</a></li>
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622>
+                <h4 data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-heading">Documentation</h4>
+                <ul data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-links">
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../docs/" class="footer-link">Getting Started</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../docs/" class="footer-link">Reactive Signals</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../docs/" class="footer-link">Control Flow</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../docs/" class="footer-link">Context API</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../api/" class="footer-link">API Reference</a></li>
                 </ul>
             </div>
 
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622>
-                <h4 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-heading">Framework</h4>
-                <ul data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-links">
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="guides/" class="footer-link">Architecture</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="benchmarks/" class="footer-link">Benchmarks</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="guides/" class="footer-link">VS Code Extension</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="guides/" class="footer-link">Server Routes</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622>
+                <h4 data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-heading">Framework</h4>
+                <ul data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-links">
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../guides/" class="footer-link">Architecture</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../benchmarks/" class="footer-link">Benchmarks</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../guides/" class="footer-link">VS Code Extension</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="../guides/" class="footer-link">Server Routes</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
                 </ul>
             </div>
 
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622>
-                <h4 data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-heading">Community</h4>
-                <ul data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-links">
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622>
+                <h4 data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-heading">Community</h4>
+                <ul data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-links">
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
                 </ul>
             </div>
         </div>
 
-        <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 class="footer-bottom">
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622>
+        <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 class="footer-bottom">
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622>
                 © 2026 Eronom
             </div>
-            <div data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622>
-                Built with <strong data-e-82c5d114a3007cc6 data-e-7ca145fb6d1aca15 data-e-d27861136846622 style="color: #00f2fe;">ERM</strong>
+            <div data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622>
+                Built with <strong data-e-82c5d114a3007cc6 data-e-2b4b0cdb57a817ee data-e-d27861136846622 style="color: #00f2fe;">ERM</strong>
             </div>
         </div>
     </div>
