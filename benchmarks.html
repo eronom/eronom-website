@@ -12,12 +12,12 @@
 
 <style id="__erm_scoped_styles">
 [data-e-82c5d114a3007cc6]:root {
-            --bg-base: #090a0f;
-            --bg-surface: #11141d;
-            --bg-surface-hover: #171c28;
+            --bg-base: #0a0a0a;
+            --bg-surface: #111111;
+            --bg-surface-hover: #171717;
             --bg-glass: rgba(17, 20, 29, 0.75);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(0, 242, 254, 0.3);
+            --border-color: #262626;
+            --border-hover: #404040;
             
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
@@ -29,9 +29,9 @@
             --accent-amber: #f59e0b;
             --accent-pink: #ec4899;
             
-            --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #9d4edd 100%);
-            --gradient-text: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%);
-            --gradient-border: linear-gradient(90deg, rgba(0,242,254,0.5), rgba(157,78,221,0.5));
+            --gradient-primary: #ffffff;
+            --gradient-text: #ffffff;
+            --gradient-border: #262626;
             --glow-cyan: 0 0 35px rgba(0, 242, 254, 0.25);
             --glow-purple: 0 0 35px rgba(157, 78, 221, 0.25);
             
@@ -54,7 +54,7 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }/* Subtle background gradient glow */
-        body[data-e-82c5d114a3007cc6]::before {
+        /* body::before removed */ body_disabled_before {
             content: '';
             position: fixed;
             top: -200px;
@@ -62,17 +62,17 @@
             transform: translateX(-50%);
             width: 1000px;
             height: 600px;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(157, 78, 221, 0.06) 40%, transparent 70%);
+            display: none;
             pointer-events: none;
             z-index: 0;
-        }body::after {
+        }/* body::after removed */ body_disabled_after {
             content: '';
             position: fixed;
             bottom: -200px;
             right: -100px;
             width: 700px;
             height: 500px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+            display: none;
             pointer-events: none;
             z-index: 0;
         }/* Custom Scrollbar */
@@ -105,8 +105,8 @@
             margin: 0 auto;
             padding: 0 24px;
         }.gradient-text[data-e-82c5d114a3007cc6] {
-            background-image: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%);
-            background: var(--gradient-text, linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%));
+            background-image: #ffffff;
+            background: var(--gradient-text, #ffffff);
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
@@ -124,7 +124,7 @@
             font-weight: 600;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            background: rgba(0, 242, 254, 0.1);
+            background: #171717; border-left: 2px solid #ffffff;
             color: var(--accent-cyan);
             border: 1px solid rgba(0, 242, 254, 0.25);
         }.badge-purple[data-e-82c5d114a3007cc6] {
@@ -149,11 +149,11 @@
             border: none;
             cursor: pointer;
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+            box-shadow: 0 4px 20px #404040;
         }.btn-primary[data-e-82c5d114a3007cc6]:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5);
-            filter: brightness(1.1);
+            transform: none;
+            box-shadow: none;
+            filter: none;
         }.btn-secondary[data-e-82c5d114a3007cc6] {
             display: inline-flex;
             align-items: center;
@@ -171,7 +171,7 @@
         }.btn-secondary[data-e-82c5d114a3007cc6]:hover {
             background: var(--bg-surface-hover);
             border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            transform: none;
         }.glass-card[data-e-82c5d114a3007cc6] {
             background: var(--bg-glass);
             backdrop-filter: blur(16px);
@@ -180,7 +180,7 @@
             border-radius: var(--radius-lg);
             transition: all 0.3s ease;
         }.glass-card[data-e-82c5d114a3007cc6]:hover {
-            border-color: var(--border-hover);
+            border-color: var(--border-color);
             box-shadow: var(--glow-cyan);
         }
 .benchmarks-container[data-e-fd76582fc82009c7] {
@@ -199,7 +199,7 @@
         border-radius: 10px;
         background: var(--bg-surface);
         border: 1px solid var(--border-color);
-        color: #94a3b8;
+        color: #a1a1a1;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -224,7 +224,7 @@
         color: #00f2fe;
         margin-bottom: 4px;
     }.stat-title[data-e-fd76582fc82009c7] {
-        color: #94a3b8;
+        color: #a1a1a1;
         font-size: 0.9rem;
         font-weight: 600;
     }.chart-box[data-e-fd76582fc82009c7] {
@@ -240,7 +240,7 @@
         font-weight: 600;
         font-size: 0.95rem;
         margin-bottom: 8px;
-    }.chart-bar-bg[data-e-fd76582fc82009c7] {
+    }.chart-bar-bg' style='background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;[data-e-fd76582fc82009c7] {
         height: 14px;
         background: rgba(255, 255, 255, 0.05);
         border-radius: 7px;
@@ -257,7 +257,7 @@
         background: rgba(9, 10, 15, 0.82);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid #262626;
         height: 64px;
         display: flex;
         align-items: center;
@@ -281,7 +281,7 @@
     }.logo-icon[data-e-42ee84ec30f250a8] {
         width: 32px;
         height: 32px;
-        background: linear-gradient(135deg, #00f2fe, #9d4edd);
+        background: #38bdf8;
         border-radius: 8px;
         display: flex;
         align-items: center;
@@ -293,7 +293,7 @@
         width: auto;
         object-fit: contain;
         border-radius: 6px;
-        filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.3));
+        filter: drop-shadow(0 0 8px #404040);
         transition: transform 0.2s ease;
     }.brand-logo[data-e-42ee84ec30f250a8]:hover .brand-logo-img {
         transform: scale(1.05);
@@ -304,7 +304,7 @@
         border-radius: 12px;
         background: rgba(0, 242, 254, 0.12);
         color: #00f2fe;
-        border: 1px solid rgba(0, 242, 254, 0.3);
+        border: 1px solid #404040;
     }.nav-menu[data-e-42ee84ec30f250a8] {
         display: flex;
         align-items: center;
@@ -313,7 +313,7 @@
     }.nav-link[data-e-42ee84ec30f250a8] {
         font-size: 0.9rem;
         font-weight: 500;
-        color: #94a3b8;
+        color: #a1a1a1;
         transition: color 0.2s ease;
         text-decoration: none;
     }.nav-link[data-e-42ee84ec30f250a8]:hover {
@@ -323,7 +323,7 @@
         align-items: center;
         gap: 12px;
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid #262626;
         border-radius: 10px;
         padding: 8px 14px;
         color: #64748b;
@@ -331,9 +331,9 @@
         cursor: pointer;
         transition: all 0.2s ease;
     }.search-btn[data-e-42ee84ec30f250a8]:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(0, 242, 254, 0.3);
-        color: #94a3b8;
+        background: #262626;
+        border-color: #404040;
+        color: #a1a1a1;
     }.shortcut-badge[data-e-42ee84ec30f250a8] {
         font-family: var(--font-mono);
         font-size: 0.75rem;
@@ -385,8 +385,8 @@
         align-items: flex-start;
         padding-top: 100px;
     }.search-dialog[data-e-42ee84ec30f250a8] {
-        background: #11141d;
-        border: 1px solid rgba(0, 242, 254, 0.3);
+        background: #111111;
+        border: 1px solid #404040;
         border-radius: 16px;
         width: 90%;
         max-width: 600px;
@@ -396,7 +396,7 @@
         display: flex;
         align-items: center;
         padding: 16px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid #262626;
     }.search-input-field[data-e-42ee84ec30f250a8] {
         width: 100%;
         background: transparent;
@@ -420,15 +420,15 @@
         cursor: pointer;
         transition: background 0.2s ease;
     }.search-item[data-e-42ee84ec30f250a8]:hover {
-        background: rgba(0, 242, 254, 0.1);
+        background: #171717; border-left: 2px solid #ffffff;
         color: #00f2fe;
     }
 .footer[data-e-d27861136846622] {
-        background: #06070a;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #050505;
+        border-top: 1px solid #262626;
         padding: 64px 0 32px;
         margin-top: 80px;
-        color: #94a3b8;
+        color: #a1a1a1;
         font-size: 0.9rem;
     }.footer-grid[data-e-d27861136846622] {
         display: grid;
@@ -464,7 +464,7 @@
         flex-direction: column;
         gap: 10px;
     }.footer-link[data-e-d27861136846622] {
-        color: #94a3b8;
+        color: #a1a1a1;
         transition: color 0.2s ease;
         text-decoration: none;
     }.footer-link[data-e-d27861136846622]:hover {
@@ -503,7 +503,54 @@
             text-align: center;
         }
     }
-</style>
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #ffffff;
+            color: #000000 !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-primary:hover {
+            background: #ffffff !important;
+            border-color: #ffffff !important;
+            color: #000000 !important;
+            transform: none;
+        }
+
+        .btn-primary *, .btn-primary:hover * {
+            color: #000000 !important;
+        }
+
+    
+        .btn-primary:hover {
+            background: #ffffff !important;
+            border-color: #ffffff !important;
+            color: #000000 !important;
+            transform: none !important;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+
+        .btn-secondary:hover {
+            background: #111111 !important;
+            border-color: #262626 !important;
+            color: #ffffff !important;
+            transform: none !important;
+            box-shadow: none !important;
+            filter: none !important;
+        }
+
+    </style>
 <script type="module" class="__erm_script">
 import { useState, useEffect, onMount, useParams, effect } from '/core/runtime.js';
 {
@@ -552,8 +599,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7 style="color: #00f2fe;">⚡ Eronom Framework</span>
                             <strong data-e-fd76582fc82009c7 style="color: #00f2fe;">85,420 req/s</strong>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 95%; background: linear-gradient(90deg, #00f2fe, #4facfe);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 95%; background: #38bdf8;"></div>
                         </div>
                     </div>
 
@@ -562,8 +609,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Bun.js HTTP Server</span>
                             <span data-e-fd76582fc82009c7>62,100 req/s</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 70%; background: rgba(255,255,255,0.25);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 70%; background: #525252;"></div>
                         </div>
                     </div>
 
@@ -572,8 +619,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Fastify (Node.js)</span>
                             <span data-e-fd76582fc82009c7>31,500 req/s</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 35%; background: rgba(255,255,255,0.15);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 35%; background: #383838;"></div>
                         </div>
                     </div>
 
@@ -582,8 +629,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Next.js App Router</span>
                             <span data-e-fd76582fc82009c7>12,400 req/s</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 14%; background: rgba(255,255,255,0.1);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 14%; background: #262626;"></div>
                         </div>
                     </div>
                 </div>
@@ -596,7 +643,7 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7 style="color: #10b981;">⚡ Eronom Engine</span>
                             <strong data-e-fd76582fc82009c7 style="color: #10b981;">14.2 MB</strong>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
                             <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 10%; background: #10b981;"></div>
                         </div>
                     </div>
@@ -606,8 +653,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Deno HTTP</span>
                             <span data-e-fd76582fc82009c7>38.0 MB</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 26%; background: rgba(255,255,255,0.25);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 26%; background: #525252;"></div>
                         </div>
                     </div>
 
@@ -616,8 +663,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Next.js (Node runtime)</span>
                             <span data-e-fd76582fc82009c7>148.5 MB</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 90%; background: rgba(255,255,255,0.15);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 90%; background: #383838;"></div>
                         </div>
                     </div>
                 </div>
@@ -627,10 +674,10 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
 
                     <div data-e-fd76582fc82009c7 class="chart-row">
                         <div data-e-fd76582fc82009c7 class="chart-label">
-                            <span data-e-fd76582fc82009c7 style="color: #9d4edd;">⚡ Eronom IPC Engine</span>
-                            <strong data-e-fd76582fc82009c7 style="color: #9d4edd;">0.18 ms</strong>
+                            <span data-e-fd76582fc82009c7 style="color: #38bdf8;">⚡ Eronom IPC Engine</span>
+                            <strong data-e-fd76582fc82009c7 style="color: #38bdf8;">0.18 ms</strong>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
                             <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 5%; background: #9d4edd;"></div>
                         </div>
                     </div>
@@ -640,8 +687,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Vite HMR</span>
                             <span data-e-fd76582fc82009c7>14.5 ms</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 40%; background: rgba(255,255,255,0.25);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 40%; background: #525252;"></div>
                         </div>
                     </div>
 
@@ -650,8 +697,8 @@ window.__erm_register_if("erm-if-0", () => { let __erm_new = ""; if (metricTab.v
                             <span data-e-fd76582fc82009c7>Turbopack (Next.js)</span>
                             <span data-e-fd76582fc82009c7>32.0 ms</span>
                         </div>
-                        <div data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 75%; background: rgba(255,255,255,0.15);"></div>
+                        <div data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 75%; background: #383838;"></div>
                         </div>
                     </div>
                 </div>
@@ -686,11 +733,11 @@ window.Header = function(anchorId, props) {
                 <span data-e-42ee84ec30f250a8 class="shortcut-badge">⌘K</span>
             </button>
 
-            <a data-e-42ee84ec30f250a8 href="https://github.com" target="_blank" class="github-btn">
+            <a data-e-42ee84ec30f250a8 href="https://github.com/eronom/eronom" target="_blank" class="github-btn">
                 <svg data-e-42ee84ec30f250a8 width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path data-e-42ee84ec30f250a8 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
-                <span data-e-42ee84ec30f250a8>1</span>
+                <span data-e-42ee84ec30f250a8>GitHub</span>
             </a>
 
             <button data-e-42ee84ec30f250a8 class="mobile-toggle" id="${anchorId}erm-evt-1874" >
@@ -805,17 +852,17 @@ window.Footer = function(anchorId, props) {
                     <li data-e-d27861136846622><a data-e-d27861136846622 href="benchmarks.html" class="footer-link">Benchmarks</a></li>
                     <li data-e-d27861136846622><a data-e-d27861136846622 href="guides.html" class="footer-link">VS Code Extension</a></li>
                     <li data-e-d27861136846622><a data-e-d27861136846622 href="guides.html" class="footer-link">Server Routes</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com/eronom/eronom" class="footer-link" target="_blank">Releases</a></li>
                 </ul>
             </div>
 
             <div data-e-d27861136846622>
                 <h4 data-e-d27861136846622 class="footer-heading">Community</h4>
                 <ul data-e-d27861136846622 class="footer-links">
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com/eronom/eronom" class="footer-link" target="_blank">GitHub Repository</a></li>
                     <li data-e-d27861136846622><a data-e-d27861136846622 href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
                     <li data-e-d27861136846622><a data-e-d27861136846622 href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
-                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
+                    <li data-e-d27861136846622><a data-e-d27861136846622 href="https://github.com/eronom/eronom" class="footer-link" target="_blank">Contributing</a></li>
                 </ul>
             </div>
         </div>
@@ -874,7 +921,7 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
                 <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-42ee84ec30f250a8 class="shortcut-badge">⌘K</span>
             </button>
 
-            <a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-42ee84ec30f250a8 href="https://github.com" target="_blank" class="github-btn">
+            <a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-42ee84ec30f250a8 href="https://github.com/eronom/eronom" target="_blank" class="github-btn">
                 <svg data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-42ee84ec30f250a8 width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-42ee84ec30f250a8 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
@@ -896,7 +943,7 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
         <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="bench-header">
             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="badge badge-green" style="margin-bottom: 12px;">Verified TechEmpower Specs</span>
             <h1 data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 style="font-size: 2.8rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">Performance Benchmarks</h1>
-            <p data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 style="color: #94a3b8; font-size: 1rem;">
+            <p data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 style="color: #a1a1a1; font-size: 1rem;">
                 Empirical speed measurements comparing Eronom's Rust core engine against leading JavaScript web frameworks.
             </p>
         </div>
@@ -909,7 +956,7 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
             </div>
 
             <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="metric-stat-card">
-                <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="stat-number" style="color: #9d4edd;">0.18ms</div>
+                <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="stat-number" style="color: #38bdf8;">0.18ms</div>
                 <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="stat-title">Cold Start Time</div>
             </div>
 
@@ -943,8 +990,8 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 style="color: #00f2fe;">⚡ Eronom Framework</span>
                             <strong data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 style="color: #00f2fe;">85,420 req/s</strong>
                         </div>
-                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 95%; background: linear-gradient(90deg, #00f2fe, #4facfe);"></div>
+                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 95%; background: #38bdf8;"></div>
                         </div>
                     </div>
 
@@ -953,8 +1000,8 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7>Bun.js HTTP Server</span>
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7>62,100 req/s</span>
                         </div>
-                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 70%; background: rgba(255,255,255,0.25);"></div>
+                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 70%; background: #525252;"></div>
                         </div>
                     </div>
 
@@ -963,8 +1010,8 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7>Fastify (Node.js)</span>
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7>31,500 req/s</span>
                         </div>
-                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 35%; background: rgba(255,255,255,0.15);"></div>
+                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 35%; background: #383838;"></div>
                         </div>
                     </div>
 
@@ -973,8 +1020,8 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7>Next.js App Router</span>
                             <span data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7>12,400 req/s</span>
                         </div>
-                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg">
-                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 14%; background: rgba(255,255,255,0.1);"></div>
+                        <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-bg" style="background: #111111; border: 1px solid #262626; height: 16px; border-radius: 8px;">
+                            <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 class="chart-bar-fill" style="width: 14%; background: #262626;"></div>
                         </div>
                     </div>
                 </div>
@@ -1015,17 +1062,17 @@ window.__erm_events.push({ id: "erm-evt-4663", event: "click", handler: (event) 
                     <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="benchmarks.html" class="footer-link">Benchmarks</a></li>
                     <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="guides.html" class="footer-link">VS Code Extension</a></li>
                     <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="guides.html" class="footer-link">Server Routes</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Releases</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://github.com/eronom/eronom" class="footer-link" target="_blank">Releases</a></li>
                 </ul>
             </div>
 
             <div data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622>
                 <h4 data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 class="footer-heading">Community</h4>
                 <ul data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 class="footer-links">
-                    <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">GitHub Repository</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://github.com/eronom/eronom" class="footer-link" target="_blank">GitHub Repository</a></li>
                     <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://discord.com" class="footer-link" target="_blank">Discord Server</a></li>
                     <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://twitter.com" class="footer-link" target="_blank">Twitter / X</a></li>
-                    <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://github.com" class="footer-link" target="_blank">Contributing</a></li>
+                    <li data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622><a data-e-82c5d114a3007cc6 data-e-fd76582fc82009c7 data-e-d27861136846622 href="https://github.com/eronom/eronom" class="footer-link" target="_blank">Contributing</a></li>
                 </ul>
             </div>
         </div>
