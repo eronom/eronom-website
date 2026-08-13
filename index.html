@@ -987,14 +987,14 @@
 
   <span style="color: #6a9955;">// Fine-grained reactive signal (Zero VDOM)</span>
   <span style="color: #569cd6;">let</span> <span style="color: #9cdcfe;">count</span> = <span style="color: #dcdcaa;">useState</span>(<span style="color: #b5cea8;">10</span>);
-  <span style="color: #569cd6;">let</span> <span style="color: #9cdcfe;">double</span> = <span style="color: #dcdcaa;">useState</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">count</span>.<span style="color: #9cdcfe;">value</span> * <span style="color: #b5cea8;">2</span>);
+  <span style="color: #569cd6;">let</span> <span style="color: #9cdcfe;">double</span> = <span style="color: #dcdcaa;">useState</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">count</span> * <span style="color: #b5cea8;">2</span>);
 
-  <span style="color: #dcdcaa;">effect</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Signal value: '</span> + <span style="color: #9cdcfe;">count</span>.<span style="color: #9cdcfe;">value</span>));
+  <span style="color: #dcdcaa;">effect</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Signal value: '</span> + <span style="color: #9cdcfe;">count</span>));
 <span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">script</span><span style="color: #808080;">&gt;</span>
 
 <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span> <span style="color: #9cdcfe;">class</span>=<span style="color: #ce9178;">"process-card"</span><span style="color: #808080;">&gt;</span>
-  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>Count: &#123;<span style="color: #9cdcfe;">count</span>.<span style="color: #9cdcfe;">value</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>
-  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>Double Signal: &#123;<span style="color: #9cdcfe;">double</span>.<span style="color: #9cdcfe;">value</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>
+  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>Count: &#123;<span style="color: #9cdcfe;">count</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>
+  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>Double Signal: &#123;<span style="color: #9cdcfe;">double</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>
 <span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></pre>
                             </div>
 
@@ -1371,14 +1371,14 @@
 
   <span style="color: #6a9955;">// Fine-grained reactive signal (Zero VDOM)</span>
   <span style="color: #569cd6;">let</span> <span style="color: #9cdcfe;">count</span> = <span style="color: #dcdcaa;">useState</span>(<span style="color: #b5cea8;">10</span>);
-  <span style="color: #569cd6;">let</span> <span style="color: #9cdcfe;">double</span> = <span style="color: #dcdcaa;">useState</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">count</span>.<span style="color: #9cdcfe;">value</span> * <span style="color: #b5cea8;">2</span>);
+  <span style="color: #569cd6;">let</span> <span style="color: #9cdcfe;">double</span> = <span style="color: #dcdcaa;">useState</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">count</span> * <span style="color: #b5cea8;">2</span>);
 
-  <span style="color: #dcdcaa;">effect</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Signal value: '</span> + <span style="color: #9cdcfe;">count</span>.<span style="color: #9cdcfe;">value</span>));
+  <span style="color: #dcdcaa;">effect</span>(() <span style="color: #569cd6;">=&gt;</span> <span style="color: #9cdcfe;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Signal value: '</span> + <span style="color: #9cdcfe;">count</span>));
 <span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">script</span><span style="color: #808080;">&gt;</span>
 
 <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span> <span style="color: #9cdcfe;">class</span>=<span style="color: #ce9178;">"process-card"</span><span style="color: #808080;">&gt;</span>
-  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>Count: &#123;<span style="color: #9cdcfe;">count</span>.<span style="color: #9cdcfe;">value</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>
-  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>Double Signal: &#123;<span style="color: #9cdcfe;">double</span>.<span style="color: #9cdcfe;">value</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>
+  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>Count: &#123;<span style="color: #9cdcfe;">count</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">h3</span><span style="color: #808080;">&gt;</span>
+  <span style="color: #808080;">&lt;</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>Double Signal: &#123;<span style="color: #9cdcfe;">double</span>&#125;<span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span>
 <span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></pre>`;
             } else if (tab === 'routes') {
                 codePanel.innerHTML = `<pre style="color: #9cdcfe; font-family: var(--font-mono);"><span style="color: #c586c0;">import</span> { <span style="color: #dcdcaa;">defineProcessRoute</span> } <span style="color: #c586c0;">from</span> <span style="color: #ce9178;">"eronom/server"</span>;
